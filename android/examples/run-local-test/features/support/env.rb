@@ -28,10 +28,9 @@ end
 desired_caps = {
   caps: caps,
   appium_lib: {
-    server_url: "http://#{CONFIG['server']}/wd/hub"
+    server_url: "http://hub-cloud.browserstack.com/wd/hub"
   }
 }
-
 begin
   $appium_driver = Appium::Driver.new(desired_caps, true)
   $driver = $appium_driver.start_driver
