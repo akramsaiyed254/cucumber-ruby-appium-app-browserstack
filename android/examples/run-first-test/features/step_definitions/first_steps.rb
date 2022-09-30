@@ -1,15 +1,11 @@
-When /^I try to search using Wikipedia App/ do
-  $wait.until { $driver.find_element(:accessibility_id, "Search Wikipedia").displayed? }
-  $driver.find_element(:accessibility_id, "Search Wikipedia").click
+Given(/^the user can see a list of stories/) do
+	screen.list_of_stories_displayed?.should == true
 end
- 
-When("I type in {string}") do |search_keyword|
-  $wait.until { $driver.find_element(:id, "org.wikipedia.alpha:id/search_src_text").displayed? }
-  search_box = $driver.find_element(:id, "org.wikipedia.alpha:id/search_src_text")
-  search_box.send_key(search_keyword)
-  sleep 5
+
+When(/^I click on a Accept/) do
+driver.find_element(xpath: "//android.widget.TextView[@text='Accept']").click
 end
- 
-Then /^I should see results$/ do
-  $driver.find_elements(:class, "android.widget.TextView").size.should > 0
+
+Then(/^I should be able to see contents of story/) do
+	screen.list_of_story_contents?.should == true
 end
